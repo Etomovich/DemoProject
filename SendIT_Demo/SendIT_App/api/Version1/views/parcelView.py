@@ -25,20 +25,14 @@ class AllParcels(Resource):
 		data = request.get_json() or {}
 
 		par1 = Parcel()
-		all_p = par1.create_order(
-			data["destination"] = destination,
-			data["recipient"] = recipient,
-			data["sender"] = sender,
-			data["weight"] = weight
-			)
+		all_p = par1.create_order(data["destination"],data["recipient"],data["sender"],data["weight"])
 
 		payload = {
-			"Status":"created",
-			
+			"Status":"created"			
 		}
 		answ= make_response(jsonify(payload),204)
 		answ.content_type = 'application/json;charset=utf-8'
 		return answ
 
 
-	parcels_bp.add_resource(AllParcels,"/parcels")
+parcels_bp.add_resource(AllParcels,"/parcels")
